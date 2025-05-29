@@ -4886,11 +4886,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\Users\\Ivy\\Documents\\webcomic-reader\\BACK\\IvyScans.API\\IvyScans.API.csproj",
+      "projectUniqueName": "C:\\Users\\Ivy\\Documents\\iscns\\IvyScans\\back\\IvyScans.API\\IvyScans.API.csproj",
       "projectName": "IvyScans.API",
-      "projectPath": "c:\\Users\\Ivy\\Documents\\webcomic-reader\\BACK\\IvyScans.API\\IvyScans.API.csproj",
+      "projectPath": "C:\\Users\\Ivy\\Documents\\iscns\\IvyScans\\back\\IvyScans.API\\IvyScans.API.csproj",
       "packagesPath": "C:\\Users\\Ivy\\.nuget\\packages\\",
-      "outputPath": "c:\\Users\\Ivy\\Documents\\webcomic-reader\\BACK\\IvyScans.API\\obj\\",
+      "outputPath": "C:\\Users\\Ivy\\Documents\\iscns\\IvyScans\\back\\IvyScans.API\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Ivy\\AppData\\Roaming\\NuGet\\NuGet.Config"

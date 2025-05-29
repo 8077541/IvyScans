@@ -70,12 +70,13 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 // Configure CORS
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowNextJsApp", builder =>
+    options.AddPolicy("AllowNextJsApp", corsBuilder =>
     {
-        builder.WithOrigins("http://localhost:3000")  // Your Next.js frontend URL
-               .AllowAnyMethod()
-               .AllowAnyHeader()
-               .AllowCredentials();
+        var allowedOrigins = builder.Configuration["AllowedOrigins"]?.Split(';', ',') ?? new[] { "http://localhost:3000" };
+        corsBuilder.WithOrigins(allowedOrigins)
+                   .AllowAnyMethod()
+                   .AllowAnyHeader()
+                   .AllowCredentials();
     });
 });
 
