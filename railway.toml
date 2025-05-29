@@ -1,0 +1,31 @@
+[build]
+# Use Docker instead of Nixpacks
+builder = "DOCKERFILE"
+
+[deploy]
+# Start command
+startCommand = "dotnet out/IvyScans.API.dll"
+# Health check endpoint (optional)
+healthcheckPath = "/health"
+# Restart policy
+restartPolicyType = "ON_FAILURE"
+restartPolicyMaxRetries = 10
+
+[environments.production]
+# Production environment variables
+[environments.production.variables]
+ASPNETCORE_ENVIRONMENT = "Production"
+ASPNETCORE_URLS = "http://0.0.0.0:$PORT"
+
+[environments.staging]
+# Staging environment variables  
+[environments.staging.variables]
+ASPNETCORE_ENVIRONMENT = "Staging"
+ASPNETCORE_URLS = "http://0.0.0.0:$PORT"
+
+# Optional: Specify .NET version
+[build.nixpacksConfig]
+providers = ["dotnet"]
+
+[build.nixpacksConfig.dotnet]
+version = "9.0"
