@@ -2,22 +2,13 @@
 FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build-env
 WORKDIR /app
 
-# Copy everything and debug structure
+# Copy just the project file first for better caching
+COPY Back/IvyScans.API/IvyScans.API.csproj Back/IvyScans.API/
+RUN dotnet restore Back/IvyScans.API/IvyScans.API.csproj
+
+# Copy everything else and build
 COPY . ./
-
-# Debug: Show the actual directory structure
-RUN find . -name "*.csproj" -type f
-RUN ls -la
-RUN ls -la IvyScans/ || echo "IvyScans folder not found"
-RUN ls -la IvyScans/Back/ || echo "IvyScans/Back folder not found"
-RUN ls -la IvyScans/Back/IvyScans.API/ || echo "IvyScans/Back/IvyScans.API folder not found"
-
-# Try to find the actual project file
-RUN find . -name "*.csproj" -exec echo "Found project file: {}" \;
-
-# Restore and build (update path based on debug output)
-RUN dotnet restore IvyScans/Back/IvyScans.API/IvyScans.API.csproj
-RUN dotnet publish IvyScans/Back/IvyScans.API/IvyScans.API.csproj -c Release -o out
+RUN dotnet publish Back/IvyScans.API/IvyScans.API.csproj -c Release -o out --no-restore
 
 # Build runtime image
 FROM mcr.microsoft.com/dotnet/aspnet:9.0
