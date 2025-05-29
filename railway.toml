@@ -1,6 +1,11 @@
 [build]
-# Use Docker instead of Nixpacks
-builder = "DOCKERFILE"
+# Build command for .NET 9
+builder = "NIXPACKS"
+buildCommand = """
+cd IvyScans/Back/IvyScans.API
+dotnet restore
+dotnet publish --configuration Release --output ../../../out --no-restore
+"""
 
 [deploy]
 # Start command
